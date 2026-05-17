@@ -17,5 +17,20 @@ class FlaskAppTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+    def test_add_task(self):
+
+        response = self.client.post(
+            "/",
+            data={"task": "Test task"},
+            follow_redirects=True
+        )
+
+        self.assertEqual(response.status_code, 200)
+
+        self.assertIn(
+            b"Test task",
+            response.data
+        )
+
 if __name__ == "__main__":
     unittest.main()
