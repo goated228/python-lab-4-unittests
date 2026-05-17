@@ -32,5 +32,14 @@ class FlaskAppTests(unittest.TestCase):
             response.data
         )
 
+    def test_tasks_file(self):
+
+        with open("tasks.json", "r", encoding="utf-8") as file:
+
+            tasks = json.load(file)
+
+            self.assertIsInstance(tasks, list)
+
+
 if __name__ == "__main__":
     unittest.main()
