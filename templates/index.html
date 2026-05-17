@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <meta charset="UTF-8">
+    <title>check-list of tasks</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>check-list of tasks</h1>
+
+    <form method="POST">
+
+        <input type="text"
+               name="task"
+               placeholder="enter task">
+
+        <button type="submit">
+            add
+        </button>
+
+    </form>
+
+    <ul>
+
+        {% for task in tasks %}
+
+        <li>{{ task }}</li>
+
+        {% endfor %}
+
+    </ul>
+
+</div>
+
+</body>
+</html>
