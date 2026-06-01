@@ -1,5 +1,26 @@
 [
-    "goto",
-    "washing dishes",
-    "going to fitness center",
+    {
+        "text": "Test task",
+        "done": false
+    },
+    {
+        "text": "Toggle test",
+        "done": true
+    },
+    {
+        "text": "Test task",
+        "done": false
+    },
+    {
+        "text": "Toggle test",
+        "done": true
+    },
+    {
+        "text": "Test task",
+        "done": false
+    },
+    {
+        "text": "Toggle test",
+        "done": true
+    }
 ]

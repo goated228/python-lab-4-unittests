@@ -31,15 +31,8 @@ class FlaskAppTests(unittest.TestCase):
             response.data
         )
 
-    def test_tasks_file(self):
-
-        with open("tasks.json", "r", encoding="utf-8") as file:
-
-            tasks = json.load(file)
-
-            self.assertIsInstance(tasks, list)
-
     def test_toggle_task(self):
+        
         self.client.post(
             "/",
             data={"task": "Toggle test"},
@@ -95,6 +88,14 @@ class FlaskAppTests(unittest.TestCase):
             len(tasks),
             tasks_count - 1
         )
+
+    def test_tasks_file(self):
+
+        with open("tasks.json", "r", encoding="utf-8") as file:
+
+            tasks = json.load(file)
+
+            self.assertIsInstance(tasks, list)
 
 if __name__ == "__main__":
     unittest.main()
