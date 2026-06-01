@@ -68,7 +68,33 @@ class FlaskAppTests(unittest.TestCase):
             not initial_status
         )
 
+    def test_delete_task(self):
+        self.client.post(
+            "/",
+            data={"task": "Delete test"},
+            follow_redirects=True
+        )
 
+        with open("tasks.json", "r", encoding="utf-8") as file:
+            tasks = json.load(file)
+
+        task_id = len(tasks) - 1
+        tasks_count = len(tasks)
+
+        response = self.client.get(
+            f"/delete/{task_id}",
+            follow_redirects=True
+        )
+
+        self.assertEqual(response.status_code, 200)
+
+        with open("tasks.json", "r", encoding="utf-8") as file:
+            tasks = json.load(file)
+
+        self.assertEqual(
+            len(tasks),
+            tasks_count - 1
+        )
 
 if __name__ == "__main__":
     unittest.main()
