@@ -2,7 +2,6 @@ import json
 import unittest
 
 from app import app
-
 class FlaskAppTests(unittest.TestCase):
 
     def setUp(self):
@@ -39,6 +38,36 @@ class FlaskAppTests(unittest.TestCase):
             tasks = json.load(file)
 
             self.assertIsInstance(tasks, list)
+
+    def test_toggle_task(self):
+        self.client.post(
+            "/",
+            data={"task": "Toggle test"},
+            follow_redirects=True
+        )
+
+        with open("tasks.json", "r", encoding="utf-8") as file:
+            tasks = json.load(file)
+
+        task_id = len(tasks) - 1
+
+        initial_status = tasks[task_id]["done"]
+
+        response = self.client.get(
+            f"/toggle/{task_id}",
+            follow_redirects=True
+        )
+
+        self.assertEqual(response.status_code, 200)
+
+        with open("tasks.json", "r", encoding="utf-8") as file:
+            tasks = json.load(file)
+
+        self.assertEqual(
+            tasks[task_id]["done"],
+            not initial_status
+        )
+
 
 
 if __name__ == "__main__":

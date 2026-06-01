@@ -33,3 +33,48 @@ button {
 li {
     margin-top: 10px;
 }
+
+.done {
+    text-decoration: line-through;
+    color: gray;
+}
+
+li a {
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.btn {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-done {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: darkgrey;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    opacity: 0.9;
+}
+
+.delbtn {
+    display: inline-block;
+    padding: 7px 8px 4px 8px;
+    background-color: firebrick;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delbtn:hover{
+    opacity: 0.9;
+}

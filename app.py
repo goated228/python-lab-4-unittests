@@ -1,7 +1,6 @@
 import json
 
 from flask import Flask, render_template, request, redirect
-
 app = Flask(__name__)
 
 TASKS_FILE = "tasks.json"
@@ -28,7 +27,7 @@ def index():
         task = request.form.get("task")
 
         if task:
-            tasks.append(task)
+            tasks.append({"text":task, "done":False})
 
             save_tasks(tasks)
 
@@ -36,6 +35,25 @@ def index():
 
     return render_template("index.html", tasks=tasks)
 
+@app.route("/toggle/<int:task_id>")
+def toggle_task(task_id):
+    tasks = load_tasks()
+
+    if 0 <= task_id < len(tasks):
+        tasks[task_id]["done"] = not tasks[task_id]["done"]
+        save_tasks(tasks)
+
+    return redirect("/")
+
+@app.route("/delete/<int:task_id>")
+def delete_task(task_id):
+    tasks = load_tasks()
+
+    if 0 <= task_id < len(tasks):
+        tasks.pop(task_id)
+        save_tasks(tasks)
+
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)
